@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:53:43 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/02 16:09:29 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/05 09:16:04 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ void	init_struct(t_game *game);
 void	map_set(t_game *game);
 void	put_image_to_window(int i, int j, t_game *game);
 int		keyhook(int keycode, t_game *game);
+int		mousehook(int button, int x, int y, t_game *game);
 void	move_p(t_game *game, int vertical, int horizon);
 void	depart_p(t_game *game, char remain);
 void	arrive_p(t_game *game, int vertical, int horizon);
+
 
 #endif

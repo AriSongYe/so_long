@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 10:02:01 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/05 09:12:12 by yecsong          ###   ########.fr       */
+/*   Created: 2022/03/22 11:03:04 by yecsong           #+#    #+#             */
+/*   Updated: 2022/04/15 12:29:25 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int main()
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_game	game;
+	void	*ptr;
 
-	init_struct(&game);
-	read_map(&game);
-	if (game.map == NULL)
-		return (-1);
-	if (!valid_map(&game))
-	{
-		write(1, "Invalid map!\n", 13);
-		free_map(&game);
-		return (-1);
-	}
-	init_game(&game);
-	map_set(&game);
-	mlx_key_hook(game.win, keyhook, &game);
-	mlx_mouse_hook(game.win, mousehook, &game);
-	mlx_loop(game.mlx);
+	ptr = (void *)malloc(size * count);
+	if (!ptr)
+		return (0);
+	ft_bzero(ptr, size * count);
+	return (ptr);
 }

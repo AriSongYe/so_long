@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 10:02:01 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/05 09:12:12 by yecsong          ###   ########.fr       */
+/*   Created: 2022/03/17 18:26:04 by yecsong           #+#    #+#             */
+/*   Updated: 2022/03/29 17:18:04 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int main()
+char	*ft_strchr(const char *s, int c)
 {
-	t_game	game;
+	size_t	i;
 
-	init_struct(&game);
-	read_map(&game);
-	if (game.map == NULL)
-		return (-1);
-	if (!valid_map(&game))
+	i = 0;
+	while (s[i])
 	{
-		write(1, "Invalid map!\n", 13);
-		free_map(&game);
-		return (-1);
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
 	}
-	init_game(&game);
-	map_set(&game);
-	mlx_key_hook(game.win, keyhook, &game);
-	mlx_mouse_hook(game.win, mousehook, &game);
-	mlx_loop(game.mlx);
+	if (c == 0)
+		return ((char *)(s + ft_strlen(s)));
+	return (NULL);
 }

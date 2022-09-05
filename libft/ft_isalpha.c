@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 10:02:01 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/05 09:12:12 by yecsong          ###   ########.fr       */
+/*   Created: 2022/03/15 16:47:04 by yecsong           #+#    #+#             */
+/*   Updated: 2022/03/18 11:15:52 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int main()
+int	ft_isalpha(int c)
 {
-	t_game	game;
-
-	init_struct(&game);
-	read_map(&game);
-	if (game.map == NULL)
-		return (-1);
-	if (!valid_map(&game))
-	{
-		write(1, "Invalid map!\n", 13);
-		free_map(&game);
-		return (-1);
-	}
-	init_game(&game);
-	map_set(&game);
-	mlx_key_hook(game.win, keyhook, &game);
-	mlx_mouse_hook(game.win, mousehook, &game);
-	mlx_loop(game.mlx);
+	if (c >= 'a' && c <= 'z')
+		return (2);
+	else if (c >= 'A' && c <= 'Z')
+		return (1);
+	else
+		return (0);
 }

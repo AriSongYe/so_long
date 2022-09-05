@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 10:02:01 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/05 09:12:12 by yecsong          ###   ########.fr       */
+/*   Created: 2022/03/22 14:40:53 by yecsong           #+#    #+#             */
+/*   Updated: 2022/09/01 12:32:37 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
+#include <stdio.h>
 
-int main()
+char	*ft_strjoin(char *s1, char *s2)
 {
-	t_game	game;
+	size_t	s1_len;
+	size_t	s2_len;
+	char	*ptr;
 
-	init_struct(&game);
-	read_map(&game);
-	if (game.map == NULL)
-		return (-1);
-	if (!valid_map(&game))
-	{
-		write(1, "Invalid map!\n", 13);
-		free_map(&game);
-		return (-1);
-	}
-	init_game(&game);
-	map_set(&game);
-	mlx_key_hook(game.win, keyhook, &game);
-	mlx_mouse_hook(game.win, mousehook, &game);
-	mlx_loop(game.mlx);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	ptr = (char *)malloc(sizeof(char) *(s1_len + s2_len + 1));
+	if (!ptr)
+		return (NULL);
+	ft_strlcpy(ptr, s1, s1_len + 1);
+	ft_strlcat(ptr, s2, s2_len + s1_len + 1);
+	free(s1);
+	return (ptr);
 }

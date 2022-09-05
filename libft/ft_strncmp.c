@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 10:02:01 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/05 09:12:12 by yecsong          ###   ########.fr       */
+/*   Created: 2022/03/18 14:09:37 by yecsong           #+#    #+#             */
+/*   Updated: 2022/03/29 15:07:26 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int main()
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_game	game;
+	size_t	i;
 
-	init_struct(&game);
-	read_map(&game);
-	if (game.map == NULL)
-		return (-1);
-	if (!valid_map(&game))
-	{
-		write(1, "Invalid map!\n", 13);
-		free_map(&game);
-		return (-1);
-	}
-	init_game(&game);
-	map_set(&game);
-	mlx_key_hook(game.win, keyhook, &game);
-	mlx_mouse_hook(game.win, mousehook, &game);
-	mlx_loop(game.mlx);
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] != '\0' && s2[i] != '\0' && i < n - 1 && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

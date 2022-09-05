@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 10:02:01 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/05 09:12:12 by yecsong          ###   ########.fr       */
+/*   Created: 2022/03/16 12:25:01 by yecsong           #+#    #+#             */
+/*   Updated: 2022/03/18 12:04:11 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int main()
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	t_game	game;
+	unsigned char		*tmp_dst;
+	const unsigned char	*tmp_src;
 
-	init_struct(&game);
-	read_map(&game);
-	if (game.map == NULL)
-		return (-1);
-	if (!valid_map(&game))
+	tmp_dst = (unsigned char *)dst;
+	tmp_src = (unsigned char *)src;
+	if ((dst == NULL && src == NULL) || len == 0)
+		return (dst);
+	if (dst > src)
 	{
-		write(1, "Invalid map!\n", 13);
-		free_map(&game);
-		return (-1);
+		while (len-- > 0)
+			*(tmp_dst + len) = *(tmp_src + len);
 	}
-	init_game(&game);
-	map_set(&game);
-	mlx_key_hook(game.win, keyhook, &game);
-	mlx_mouse_hook(game.win, mousehook, &game);
-	mlx_loop(game.mlx);
+	else
+	{
+		while (len-- > 0)
+			*tmp_dst++ = *tmp_src++;
+	}
+	return (dst);
 }

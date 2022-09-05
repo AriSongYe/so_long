@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:49:53 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/02 16:31:30 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/05 09:16:51 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,9 @@ int	keyhook(int keycode, t_game *game)
 	else if (keycode == 2)
 		move_p(game, 0, -1);
 	return (0);
+}
+
+int	mousehook(int buttom, int x, int y, t_game *game)
+{
+
 }
