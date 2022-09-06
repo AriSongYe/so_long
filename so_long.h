@@ -6,22 +6,20 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:53:43 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/05 09:16:04 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/05 15:10:31 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 
 # define SO_LONG_H
-#define P 128
+# define P 32
+# define X_EVENT_KEY_EXIT	17
 
-#include "mlx.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include "./libft/libft.h"
+# include "mlx.h"
+# include <stdio.h>
+# include <fcntl.h>
+# include "./libft/libft.h"
 
 typedef struct s_game
 {
@@ -43,7 +41,7 @@ typedef struct s_game
 	int		move_cnt;
 }	t_game;
 
-void	read_map(t_game *game);
+void	read_map(t_game *game, char *file);
 void	free_map(t_game *game);
 void	cnt_game(t_game *game, char *map, int col);
 int		valid_wall(char *map, int option, int len);
@@ -53,10 +51,9 @@ void	init_struct(t_game *game);
 void	map_set(t_game *game);
 void	put_image_to_window(int i, int j, t_game *game);
 int		keyhook(int keycode, t_game *game);
-int		mousehook(int button, int x, int y, t_game *game);
+int		exit_program(t_game *game);
 void	move_p(t_game *game, int vertical, int horizon);
 void	depart_p(t_game *game, char remain);
 void	arrive_p(t_game *game, int vertical, int horizon);
-
 
 #endif

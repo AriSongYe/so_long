@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:49:53 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/05 09:16:51 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/05 15:17:37 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,36 @@ void	init_game(t_game *game)
 	int	h;
 
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, game->m_row * P, game->m_col * P, "so_long");
+	game->win = mlx_new_window(game->mlx, game->m_row * P, game->m_col * P, "");
 	game->i_1 = mlx_xpm_file_to_image(game->mlx, "./obj/tile.xpm", &w, &h);
-	game->i_2= mlx_xpm_file_to_image(game->mlx, "./obj/wall.xpm", &w, &h);
+	game->i_2 = mlx_xpm_file_to_image(game->mlx, "./obj/wall.xpm", &w, &h);
 	game->i_3 = mlx_xpm_file_to_image(game->mlx, "./obj/cha.xpm", &w, &h);
 	game->i_4 = mlx_xpm_file_to_image(game->mlx, "./obj/col.xpm", &w, &h);
 	game->i_5 = mlx_xpm_file_to_image(game->mlx, "./obj/exit.xpm", &w, &h);
 }
 
-void	put_image_to_window(int i, int j, t_game *game)
+void	put_image_to_window(int i, int j, t_game *g)
 {
-	if (game->map[i][j] == '0')
-		mlx_put_image_to_window(game->mlx, game->win, game->i_1, P * j, P * i);
-	else if (game->map[i][j] == '1')
-		mlx_put_image_to_window(game->mlx, game->win, game->i_2, P * j, P * i);
-	else if (game->map[i][j] != '0' && game->map[i][j] != '1')
+	if (g->map[i][j] == '0')
+		mlx_put_image_to_window(g->mlx, g->win, g->i_1, P * j, P * i);
+	else if (g->map[i][j] == '1')
 	{
-		mlx_put_image_to_window(game->mlx, game->win, game->i_1, P * j, P * i);
-		if (game->map[i][j] == 'P')
-			mlx_put_image_to_window(game->mlx, game->win, game->i_3, P * j, P * i);
-		else if (game->map[i][j] == 'C')
-			mlx_put_image_to_window(game->mlx, game->win, game->i_4, P * j, P * i);
-		else if (game->map[i][j] == 'E')
-			mlx_put_image_to_window(game->mlx, game->win, game->i_5, P * j, P * i);
-		else if (game->map[i][j] == 'N')
+		mlx_put_image_to_window(g->mlx, g->win, g->i_1, P * j, P * i);
+		mlx_put_image_to_window(g->mlx, g->win, g->i_2, P * j, P * i);
+	}
+	else if (g->map[i][j] != '0' && g->map[i][j] != '1')
+	{
+		mlx_put_image_to_window(g->mlx, g->win, g->i_1, P * j, P * i);
+		if (g->map[i][j] == 'P')
+			mlx_put_image_to_window(g->mlx, g->win, g->i_3, P * j, P * i);
+		else if (g->map[i][j] == 'C')
+			mlx_put_image_to_window(g->mlx, g->win, g->i_4, P * j, P * i);
+		else if (g->map[i][j] == 'E')
+			mlx_put_image_to_window(g->mlx, g->win, g->i_5, P * j, P * i);
+		else if (g->map[i][j] == 'N')
 		{
-			mlx_put_image_to_window(game->mlx, game->win, game->i_5, P * j, P * i);
-			mlx_put_image_to_window(game->mlx, game->win, game->i_3, P * j, P * i);
+			mlx_put_image_to_window(g->mlx, g->win, g->i_5, P * j, P * i);
+			mlx_put_image_to_window(g->mlx, g->win, g->i_3, P * j, P * i);
 		}
 	}
 }
@@ -64,8 +67,8 @@ void	put_image_to_window(int i, int j, t_game *game)
 void	map_set(t_game *game)
 {
 	int	i;
-	int	j; 
-	
+	int	j;
+
 	i = 0;
 	while (i < game->m_col)
 	{
@@ -79,14 +82,10 @@ void	map_set(t_game *game)
 	}
 }
 
-
 int	keyhook(int keycode, t_game *game)
 {
 	if (keycode == 53)
-	{
-		mlx_destroy_window(game->mlx, game->win);
-		exit(1);
-	}
+		exit_program(game);
 	else if (keycode == 13)
 		move_p(game, 1, 0);
 	else if (keycode == 0)
@@ -98,7 +97,8 @@ int	keyhook(int keycode, t_game *game)
 	return (0);
 }
 
-int	mousehook(int buttom, int x, int y, t_game *game)
+int	exit_program(t_game *game)
 {
-
+	mlx_destroy_window(game->mlx, game->win);
+	exit(0);
 }
