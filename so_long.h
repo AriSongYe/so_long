@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:53:43 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/05 15:10:31 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/07 11:36:03 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int		exit_program(t_game *game);
 void	move_p(t_game *game, int vertical, int horizon);
 void	depart_p(t_game *game, char remain);
 void	arrive_p(t_game *game, int vertical, int horizon);
+int		valid_obj(t_game *game);
 
 #endif

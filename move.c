@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:30:28 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/07 08:59:56 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/07 14:04:19 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,17 @@ int	exit_program(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	exit(0);
+}
+
+void	free_map(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->map[i])
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
 }

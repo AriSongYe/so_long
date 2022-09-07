@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:51:38 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/07 09:01:15 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/07 14:04:47 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,6 @@ void	read_map(t_game *game, char *file)
 	}
 	game->map = ft_split(temp, '\n');
 	free(temp);
-}
-
-void	free_map(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (game->map[i])
-	{
-		free(game->map[i]);
-		i++;
-	}
-	free(game->map);
 }
 
 int	valid_wall(char *map, int option, int len)
@@ -111,5 +98,33 @@ int	valid_map(t_game *game)
 	if (!game->collect || !game->exit || !game->player)
 		return (0);
 	game->m_col = i;
+	if (!valid_obj(game))
+		return (0);
+	return (1);
+}
+
+int	valid_obj(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->m_col)
+	{
+		j = 0;
+		while (j < game->m_row)
+		{
+			if (game->map[i][j] != 'C' && game->map[i][j] != 'E')
+			{
+				if (game->map[i][j] != '0' && game->map[i][j] != '1')
+				{
+					if (game->map[i][j] != 'P')
+						return (0);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
 	return (1);
 }

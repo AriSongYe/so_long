@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 10:02:01 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/07 08:28:45 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/07 13:35:41 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (!valid_map(&game))
 	{
-		write(1, "Error Invalid map!\n", 20);
+		write(2, "Error Invalid map!\n", 20);
 		free_map(&game);
 		return (-1);
 	}
