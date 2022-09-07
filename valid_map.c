@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:51:38 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/07 08:33:36 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/07 09:01:15 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ void	read_map(t_game *game, char *file)
 	{
 		n = read(fd, buff, 10);
 		if (n <= 0)
-			break;
+			break ;
 		buff[n] = '\0';
 		temp = ft_strjoin(temp, buff);
-		
 	}
 	game->map = ft_split(temp, '\n');
 	free(temp);

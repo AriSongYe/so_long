@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:49:53 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/05 15:17:37 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/07 08:54:47 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,4 @@ int	keyhook(int keycode, t_game *game)
 	else if (keycode == 2)
 		move_p(game, 0, -1);
 	return (0);
-}
-
-int	exit_program(t_game *game)
-{
-	mlx_destroy_window(game->mlx, game->win);
-	exit(0);
 }

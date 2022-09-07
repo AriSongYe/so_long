@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:30:28 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/07 08:28:16 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/07 08:59:56 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,10 @@ void	move_p(t_game *game, int vertical, int horizon)
 		game->move_cnt++;
 		printf("move count : %d\n", game->move_cnt);
 	}
+}
+
+int	exit_program(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	exit(0);
 }
