@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 10:02:01 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/07 13:35:41 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/13 13:29:17 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (-1);
+		return (0);
 	init_struct(&game);
 	read_map(&game, argv[1]);
 	if (game.map == NULL)
-		return (-1);
+		return (0);
 	if (!valid_map(&game))
 	{
-		write(2, "Error Invalid map!\n", 20);
+		write(1, "Error Invalid map!\n", 20);
 		free_map(&game);
-		return (-1);
+		return (0);
 	}
 	init_game(&game);
 	map_set(&game);
