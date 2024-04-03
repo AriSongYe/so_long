@@ -1,5 +1,8 @@
 ## Subject Summary
 
+## mlx
+[mlx](https://www.notion.so/so_long-mlx-58f163491fbc449f9d10af5a5e69487b?pvs=4)
+
 ## Code Flow Chart
 
 ![image](https://github.com/AriSongYe/so_long/assets/82326075/798a2c40-ea1a-4f2d-883c-f08a7dea6f17)
